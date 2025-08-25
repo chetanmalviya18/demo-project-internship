@@ -1,14 +1,14 @@
 import { Sequelize } from "sequelize";
 
-import { development } from "../config/config";
+import config from "../config/config.json";
 
 const sequelize = new Sequelize(
-  development.database,
-  development.username,
-  development.password,
+  config.development.database,
+  config.development.username,
+  config.development.password,
   {
-    host: development.host,
-    dialect: development.dialect,
+    host: config.development.host,
+    dialect: config.development.dialect,
   }
 );
 
