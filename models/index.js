@@ -44,22 +44,27 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-const { User, post, comments } = db;
+const { Users, Posts, Comments, Profiles } = db;
 
 // A User can have many BlogPosts
 // A BlogPost belongs to a single User
-User.hasMany(post, { foreignKey: "userId" });
-post.belongsTo(User, { foreignKey: "userId" });
+Users.hasMany(Posts, { foreignKey: "userId" });
+Posts.belongsTo(Users, { foreignKey: "userId" });
 
 // A User can write many Comments
 // A Comment belongs to a single User
-User.hasMany(comments, { foreignKey: "userId" });
-comments.belongsTo(User, { foreignKey: "userId" });
+Users.hasMany(Comments, { foreignKey: "userId" });
+Comments.belongsTo(Users, { foreignKey: "userId" });
 
 // A BlogPost can have many Comments
 // A Comment belongs to a single BlogPost
-post.hasMany(comments, { foreignKey: "postId" });
-comments.belongsTo(post, { foreignKey: "postId" });
+Posts.hasMany(Comments, { foreignKey: "postId" });
+Comments.belongsTo(Posts, { foreignKey: "postId" });
+
+// A User can have one Profile
+// A Profile belongs to a single User
+Users.hasOne(Profiles, { foreignKey: "userId" });
+Profiles.belongsTo(Users, { foreignKey: "userId" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
