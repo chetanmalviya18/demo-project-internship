@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Profiles.init(
     {
-      bio: DataTypes.TEXT,
+      bio: DataTypes.STRING,
       location: DataTypes.STRING,
     },
     {

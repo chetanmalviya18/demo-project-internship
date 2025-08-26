@@ -15,6 +15,7 @@ module.exports = {
       },
       location: {
         type: Sequelize.STRING,
+        allowNull: false,
         defaultValue: "Udaipur, Rajasthan",
       },
       createdAt: {
