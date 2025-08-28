@@ -26,7 +26,7 @@ fs.readdirSync(__dirname)
     return (
       file.indexOf(".") !== 0 &&
       file !== basename &&
-      file.slice(-3) === ".js" &&
+      (file.slice(-3) === ".js" || file.slice(-4) === ".cjs") &&
       file.indexOf(".test.js") === -1
     );
   })
@@ -68,5 +68,7 @@ Profile.belongsTo(User, { foreignKey: "userId" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+
+// console.log("Loaded models:", Object.keys(db));
 
 module.exports = db;

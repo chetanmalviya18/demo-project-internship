@@ -1,14 +1,13 @@
 import { Sequelize } from "sequelize";
-
-import config from "../config/config.json";
+import "dotenv/config";
 
 const sequelize = new Sequelize(
-  config.development.database,
-  config.development.username,
-  config.development.password,
+  process.env.DB_NAME,
+  process.env.DB_USER,
+  process.env.DB_PASS,
   {
-    host: config.development.host,
-    dialect: config.development.dialect,
+    host: process.env.DB_HOST,
+    dialect: "mysql",
   }
 );
 

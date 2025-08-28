@@ -3,12 +3,12 @@ import db from "../models/index.cjs";
 const { User, Post, Comment } = db;
 
 // Adds a new comment to a blog post.
-const addComment = async (userId, postId, commentData) => {
+const addComment = async (postId, commentData) => {
   const { body } = commentData;
 
   const newComment = await Comment.create({
-    body,
-    userId,
+    body: commentData.body,
+    userId: commentData.userId,
     postId,
   });
 

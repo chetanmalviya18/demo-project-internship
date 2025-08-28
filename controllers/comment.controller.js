@@ -2,7 +2,7 @@ import {
   addComment,
   deleteComment,
   updateComment,
-} from "../services/comment.service";
+} from "../services/comment.service.js";
 
 /**
  * Handles adding a comment to a specific post.

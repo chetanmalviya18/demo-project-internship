@@ -3,7 +3,7 @@ import {
   deletePost,
   getPostById,
   updatePost,
-} from "../services/post.service";
+} from "../services/post.service.js";
 
 /**
  * Handles the creation of a new blog post.
@@ -11,13 +11,14 @@ import {
  */
 const handleCreatePost = async (req, res) => {
   try {
-    const { userId, title, content } = req.body;
+    const userId = req.params.userId;
+    const { title, content } = req.body;
 
-    if (!title || !content || !userId) {
+    if (!title || !content) {
       return res.status(400).json({ message: "Missing required fields." });
     }
 
-    const newPost = await createPost({ title, content, userId });
+    const newPost = await createPost(userId, { title, content });
     res.status(201).json(newPost);
   } catch (error) {
     res
@@ -54,6 +55,7 @@ const handleGetPostById = async (req, res) => {
 const handleUpdatePost = async (req, res) => {
   try {
     const postId = req.params.postId;
+
     const { title, content } = req.body;
 
     const updatedPost = await updatePost(postId, { title, content });
@@ -89,4 +91,11 @@ const handleDeletePost = async (req, res) => {
       .status(500)
       .json({ message: "Error deleting post", error: error.message });
   }
+};
+
+export {
+  handleCreatePost,
+  handleGetPostById,
+  handleUpdatePost,
+  handleDeletePost,
 };

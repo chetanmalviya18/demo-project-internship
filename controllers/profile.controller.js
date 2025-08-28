@@ -1,4 +1,4 @@
-import updateProfile from "../services/profile.service";
+import updateProfile from "../services/profile.service.js";
 
 /**
  * Handles updating a user profile.
@@ -22,3 +22,5 @@ const handleUpdateProfile = async (req, res) => {
       .json({ message: "Error updating profile", error: error.message });
   }
 };
+
+export default handleUpdateProfile;
