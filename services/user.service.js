@@ -52,6 +52,7 @@ async function getUserByEmail(email) {
     where: { email: email },
     include: Profile,
   });
+  return user;
 }
 
 // Updates a user's information.

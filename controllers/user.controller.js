@@ -1,16 +1,17 @@
 import {
+  createUser,
   deleteUserById,
   getUserByEmail,
   updateUser,
-} from "../services/user.service";
-import { createUser } from "../services/userService";
+} from "../services/user.service.js";
 
 /**
  * Handles the creation of a new user.
- * Route: POST /users
+ * Route: POST /user
  */
 const handleCreateUser = async (req, res) => {
   try {
+    console.log("Creating user...");
     const { firstName, lastName, email, password } = req.body;
 
     if (!firstName || !lastName || !email || !password) {
@@ -28,7 +29,7 @@ const handleCreateUser = async (req, res) => {
 
 /**
  * Handles the retrieval of a user.
- * Route: GET /users/:email
+ * Route: GET /user/:email
  */
 const handleGetUserByEmail = async (req, res) => {
   try {
@@ -48,8 +49,8 @@ const handleGetUserByEmail = async (req, res) => {
 };
 
 /**
- * Handles updating a user's profile.
- * Route: PUT /profiles/:userId
+ * Handles updating a user's information.
+ * Route: PUT /user/:userId
  */
 const handleUpdateUser = async (req, res) => {
   try {
@@ -77,7 +78,7 @@ const handleUpdateUser = async (req, res) => {
 
 /**
  * Handles deleting a user.
- * Route: DELETE /users/:userId
+ * Route: DELETE /user/:userId
  */
 const handleDeleteUser = async (req, res) => {
   try {
