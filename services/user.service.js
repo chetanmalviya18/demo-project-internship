@@ -37,7 +37,7 @@ async function createUser(userData) {
 
     // We don't want to return the password hash
     newUser.password = undefined;
-    return newUser;
+    return { newUser, newProfile };
   } catch (error) {
     // If anything fails, roll back the transaction
     await trans.rollback();

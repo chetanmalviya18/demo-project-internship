@@ -12,3 +12,5 @@ const updateProfile = async (userId, profileData) => {
   await profile.update(profileData);
   return profile;
 };
+
+export default updateProfile;
