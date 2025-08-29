@@ -2,17 +2,22 @@ import express from "express";
 import sequelize from "./database/database.js";
 import cors from "cors";
 import "dotenv/config";
+import morgan from "morgan";
+import errorHandler from "./middleware/errorHandler.js";
 
 // Import route modules
 import userRoutes from "./routes/user.route.js";
 import postRoutes from "./routes/post.route.js";
 import commentRoutes from "./routes/comment.route.js";
 import profileRoutes from "./routes/profile.route.js";
+import authRoutes from "./routes/auth.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(morgan("dev"));
+app.use(errorHandler);
 app.use(cors());
 app.use(express.json());
 
@@ -21,6 +26,7 @@ app.use("/api", userRoutes);
 app.use("/api", postRoutes);
 app.use("/api", commentRoutes);
 app.use("/api", profileRoutes);
+app.use("/api", authRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Express-Sequelize API");

@@ -1,31 +1,8 @@
 import {
-  createUser,
   deleteUserById,
   getUserByEmail,
   updateUser,
 } from "../services/user.service.js";
-
-/**
- * Handles the creation of a new user.
- * Route: POST /user
- */
-const handleCreateUser = async (req, res) => {
-  try {
-    console.log("Creating user...");
-    const { firstName, lastName, email, password } = req.body;
-
-    if (!firstName || !lastName || !email || !password) {
-      return res.status(400).json({ message: "Missing required fields." });
-    }
-
-    const newUser = await createUser({ firstName, lastName, email, password });
-    res.status(201).json(newUser);
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error creating user", error: error.message });
-  }
-};
 
 /**
  * Handles the retrieval of a user.
@@ -97,9 +74,4 @@ const handleDeleteUser = async (req, res) => {
   }
 };
 
-export {
-  handleCreateUser,
-  handleGetUserByEmail,
-  handleUpdateUser,
-  handleDeleteUser,
-};
+export { handleGetUserByEmail, handleUpdateUser, handleDeleteUser };
