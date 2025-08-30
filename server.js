@@ -2,8 +2,9 @@ import express from "express";
 import sequelize from "./database/database.js";
 import cors from "cors";
 import "dotenv/config";
-import morgan from "morgan";
+import pinoHttp from "pino-http";
 import errorHandler from "./middleware/errorHandler.js";
+import helmet from "helmet";
 
 // Import route modules
 import userRoutes from "./routes/user.route.js";
@@ -16,7 +17,15 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(morgan("dev"));
+app.use(helmet());
+app.use(
+  pinoHttp({
+    transport:
+      process.env.NODE_ENV !== "production"
+        ? { target: "pino-pretty" }
+        : undefined,
+  })
+);
 app.use(errorHandler);
 app.use(cors());
 app.use(express.json());
