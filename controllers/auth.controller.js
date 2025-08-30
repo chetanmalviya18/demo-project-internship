@@ -6,7 +6,6 @@ import { login, registerUser } from "../services/auth.service.js";
  */
 const handleRegisterUser = async (req, res) => {
   try {
-    console.log("Registering user...");
     const { firstName, lastName, email, password } = req.body;
 
     if (!firstName || !lastName || !email || !password) {

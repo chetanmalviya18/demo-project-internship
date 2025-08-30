@@ -1,7 +1,15 @@
 import { ValidationError } from "sequelize";
 
 const errorHandler = (err, req, res, next) => {
-  console.error(err);
+  // console.error(err);
+
+  // Handle express-validator errors (from validateRequest)
+  if (err.message === "Validation failed" && err.errors) {
+    return res.status(err.statusCode).json({
+      message: err.message,
+      errors: err.errors,
+    });
+  }
 
   // Handle Sequelize Validation Errors
   if (err instanceof ValidationError) {
