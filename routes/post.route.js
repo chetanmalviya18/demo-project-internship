@@ -10,8 +10,8 @@ import authenticationToken from "../middleware/authenticateToken.js";
 const router = Router();
 
 // Route to create a new post
-// POST /api/post/:userId
-router.post("/post/:userId", authenticationToken, handleCreatePost);
+// POST /api/post/create
+router.post("/post/create", authenticationToken, handleCreatePost);
 
 // Route to retrieve a post by ID
 // GET /api/post/:postId
