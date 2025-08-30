@@ -7,11 +7,11 @@ import {
 
 /**
  * Handles the creation of a new blog post.
- * Route: POST /posts
+ * Route: POST /post/create
  */
 const handleCreatePost = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = req.user.id;
     const { title, content } = req.body;
 
     if (!title || !content) {
@@ -32,6 +32,7 @@ const handleCreatePost = async (req, res) => {
  * Route: GET /posts/:postId
  */
 const handleGetPostById = async (req, res) => {
+  3;
   try {
     const postId = req.params.postId;
     const post = await getPostById(postId);

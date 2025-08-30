@@ -4,11 +4,12 @@ const { User, Post, Comment } = db;
 
 // Adds a new comment to a blog post.
 const addComment = async (postId, commentData) => {
+  const userId = req.user.id;
   const { body } = commentData;
 
   const newComment = await Comment.create({
-    body: commentData.body,
-    userId: commentData.userId,
+    body,
+    userId,
     postId,
   });
 
@@ -16,7 +17,8 @@ const addComment = async (postId, commentData) => {
 };
 
 //Updates a comment by its ID.
-const updateComment = async (commentId, userId, updatedData) => {
+const updateComment = async (commentId, updatedData) => {
+  const userId = req.user.id;
   const comment = await Comment.findByPk(commentId);
 
   if (!comment) return null; // Comment not found
@@ -32,7 +34,8 @@ const updateComment = async (commentId, userId, updatedData) => {
 };
 
 // Deletes a comment by its ID.
-const deleteComment = async (commentId, userId) => {
+const deleteComment = async (commentId) => {
+  const userId = req.user.id;
   const comment = await Comment.findByPk(commentId);
 
   if (!comment) return false; // Comment not found

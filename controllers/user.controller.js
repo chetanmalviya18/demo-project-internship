@@ -27,11 +27,11 @@ const handleGetUserByEmail = async (req, res) => {
 
 /**
  * Handles updating a user's information.
- * Route: PUT /user/:userId
+ * Route: PUT /user/update
  */
 const handleUpdateUser = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = req.user.id;
     const { firstName, lastName, email, password } = req.body;
 
     const updatedUser = await updateUser(userId, {
@@ -55,11 +55,11 @@ const handleUpdateUser = async (req, res) => {
 
 /**
  * Handles deleting a user.
- * Route: DELETE /user/:userId
+ * Route: DELETE /user/delete
  */
 const handleDeleteUser = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const userId = req.user.id;
     const deletedUser = await deleteUserById(userId);
 
     if (!deletedUser) {

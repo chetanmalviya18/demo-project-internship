@@ -33,7 +33,8 @@ const getPostById = async (postId) => {
 };
 
 // Updates a post by its id
-const updatePost = async (postId, userId, updateData) => {
+const updatePost = async (postId, updateData) => {
+  const userId = req.user.id;
   const post = await Post.findByPk(postId);
 
   if (!post) return null;
@@ -47,7 +48,8 @@ const updatePost = async (postId, userId, updateData) => {
 };
 
 // Deletes a post by its ID.
-const deletePost = async (postId, userId) => {
+const deletePost = async (postId) => {
+  const userId = req.user.id;
   const post = await Post.findByPk(postId);
 
   if (!post) return null;

@@ -11,13 +11,13 @@ import {
 const handleAddComment = async (req, res) => {
   try {
     const postId = req.params.postId;
-    const { userId, body } = req.body;
+    const { body } = req.body;
 
-    if (!userId || !body) {
+    if (!body) {
       return res.status(400).json({ message: "Missing required fields." });
     }
 
-    const newComment = await addComment(postId, { userId, body });
+    const newComment = await addComment(postId, { body });
     res.status(201).json(newComment);
   } catch (error) {
     res
