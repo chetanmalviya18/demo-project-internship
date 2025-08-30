@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  # Node.js App Service
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DB_HOST=${DB_HOSTT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
+      - TOKEN_SECRET=${TOKEN_SECRET}
+
+    depends_on:
+      - db
+
+  # MySQL Database Service
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - MYSQL_DATABASE=${DB_NAME}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
