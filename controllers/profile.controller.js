@@ -6,10 +6,14 @@ import updateProfile from "../services/profile.service.js";
  */
 const handleUpdateProfile = async (req, res) => {
   try {
+    const userId = req.user.id;
     const profileId = req.params.profileId;
     const { bio, location } = req.body;
 
-    const updatedProfile = await updateProfile(profileId, { bio, location });
+    const updatedProfile = await updateProfile(profileId, userId, {
+      bio,
+      location,
+    });
 
     if (!updatedProfile) {
       return res.status(404).json({ message: "Profile not found." });
