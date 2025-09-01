@@ -26,7 +26,6 @@ app.use(
         : undefined,
   })
 );
-app.use(errorHandler);
 app.use(cors());
 app.use(express.json());
 
@@ -40,6 +39,8 @@ app.use("/api", authRoutes);
 app.get("/", (req, res) => {
   res.send("Welcome to the Express-Sequelize API");
 });
+
+app.use(errorHandler);
 
 async function startServer() {
   try {

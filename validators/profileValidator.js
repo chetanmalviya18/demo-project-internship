@@ -7,4 +7,5 @@ const profileValidator = [
     .isString()
     .withMessage("Location must be a string."),
 ];
+
 export default profileValidator;
